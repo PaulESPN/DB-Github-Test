@@ -29,10 +29,15 @@ client = KustoClient(kcsb)
 ######################################################
 
 # once authenticated, usage is as following
+
+# COMMAND ----------
+
 db = "p-appsvc-apimg-applogs-adxdb"
-query = "ba_logs | take 10"
+query = "prod_apimg_success_logs | take 10"
 
 response = client.execute(db, query)
 dataframe = dataframe_from_result_table(response.primary_results[0])
 
-print(dataframe)
+# COMMAND ----------
+
+print(dataframe[['Timestamp','ClientTransactionID']])
